@@ -1,12 +1,12 @@
 public class Call {
 
-    int number;
+    private String number;
 
-    public Call(int number) {
+    public Call(String  number) {
         this.number = number;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 }
