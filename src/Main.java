@@ -1,9 +1,9 @@
 public class Main {
     public static void main(String[] args) {
 
-        int generateCallsTime = 5000;
-        int answerCallTime = 100;
-        int dispatcherAmount = 5;
+        final int generateCallsTime = 5000;
+        final int answerCallTime = 100;
+        final int dispatcherAmount = 5;
 
         CallCentre callCentre = new CallCentre();
         Thread ATC = new Thread(callCentre::putCall);

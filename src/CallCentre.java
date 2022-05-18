@@ -10,9 +10,9 @@ public class CallCentre {
      * */
 
     private Queue<Call> calls = new ConcurrentLinkedQueue<>();
-    private String genericNumber = Long.toString(896483654);
-    private int numberEnding1 = 10;
-    private int numberEnding2 = 99;
+    private final String genericNumber = Long.toString(896483654);
+    private final int numberEnding1 = 10;
+    private final int numberEnding2 = 99;
 
     public Queue<Call> getCalls() {
         return calls;
@@ -23,11 +23,13 @@ public class CallCentre {
         while (!Thread.currentThread().isInterrupted()) {
             for (int i = numberEnding1; i < numberEnding2; i++) {
                 Call call = new Call(genericNumber + i);
-                //  try {
-                //   Thread.sleep(100);
-                //  } catch (InterruptedException e) {
-                //      e.printStackTrace();
-                // }
+//                Если мы добавляем задержку при добавлении и разборе звонка, то
+//                возникает InterruptedException и потоки не могут остановиться.
+//                  try {
+//                   Thread.sleep(1000);
+//                  } catch (InterruptedException e) {
+//                      e.printStackTrace();
+//                 }
                 calls.add(call);
                 System.out.println("ТС сгенерировала звонок " + call.getNumber());
             }
@@ -41,11 +43,11 @@ public class CallCentre {
                 call = calls.poll();
                 if (call != null) {
                     System.out.println(Thread.currentThread().getName() + " принял звонок с номера " + call.getNumber());
-                    //    try {
-                    //        Thread.sleep(300);
-                    //    } catch (InterruptedException e) {
-                    //       e.printStackTrace();
-                    // }
+//                        try {
+//                            Thread.sleep(3000);
+//                        } catch (InterruptedException e) {
+//                           e.printStackTrace();
+//                     }
                 }
             }
         }
